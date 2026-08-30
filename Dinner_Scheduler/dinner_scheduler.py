@@ -13,12 +13,12 @@ with open(file_path, "r") as mainfile:
      #If the dish_sched.txt is empty, read every dish from dish_selected.txt and copy to dish_sched.txt
      if len(content) == 0:
         with open("dish_selected.txt", "r") as used_file:
-            line = used_file.readlines()
-            for everyDish in line:
+            dish_list = used_file.readlines()
+            for everyDish in dish_list:
                 with open(file_path, "a") as mainfile:
                     mainfile.write(everyDish)
              #remove the content of dish_selected.txt after copying to dinner_sched.txt
-            with open("dish_selected.txt", "w") as f:
+            with open("dish_selected.txt", "w") as used_file:
                 pass
     #Refill the dinner_sched.txt with the content of dish_selected.txt
      with open(file_path, "r") as mainfile:
@@ -29,9 +29,9 @@ with open(file_path, "r") as mainfile:
         print(f"Your dinner for tonight is: {dish}")
         content.remove(dish)
         with open(file_path, 'w') as mainfile:
-            for line in content:
+            for everyLine in content:
                 #to add new line character when writing the content to the textfile
-                mainfile.writelines(line + "\n")
+                mainfile.writelines(everyLine + "\n")
         with open("dish_selected.txt", "a") as used_Dish:
             used_Dish.writelines(dish + "\n")
 
